@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build:local": "nwb build-react-app --copy-files",
-    "build": "cross-env NODE_ENV=production babel ./src/menus --out-dir ./lib ",
+    "build": "cross-env NODE_ENV=production babel ./src/tables --out-dir ./lib ",
     "version:patch": "npm version patch",
     "test": "mocha ./unit_test/.setup.js --require @babel/register --recursive ./unit_test",
     "start": "nwb serve-react-app --copy-files",
