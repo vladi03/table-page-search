@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{12:function(e,n,t){},18:function(e,n,t){"use strict";t.r(n);t(12);var r=t(0),a=t.n(r),l=t(3),c=a.a.createElement(a.a.Fragment,null,a.a.createElement("div",null,"Hi World"),a.a.createElement("div",null,"Template"));Object(l.render)(a.a.createElement(function(){return c},null),document.querySelector("#app"))},4:function(e,n,t){t(5),e.exports=t(18)}},[[4,2,1]]]);
-//# sourceMappingURL=app.3494445a.js.map
