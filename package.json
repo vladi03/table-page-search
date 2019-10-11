@@ -7,12 +7,12 @@
     "lib"
   ],
   "scripts": {
-    "build:local": "nwb build-react-app",
+    "build:local": "nwb build-react-app --copy-files",
     "build": "cross-env NODE_ENV=production babel ./src/menus --out-dir ./lib ",
     "version:patch": "npm version patch",
     "test": "mocha ./unit_test/.setup.js --require @babel/register --recursive ./unit_test",
-    "start": "nwb serve-react-app",
-    "prepublish": "npm-run-all build:lib version:patch",
+    "start": "nwb serve-react-app --copy-files",
+    "prepublish": "npm-run-all build version:patch",
     "deploy:docs": "gh-pages -d dist"
   },
   "repository": {
