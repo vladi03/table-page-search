@@ -22,7 +22,7 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText}) => {
 
     if(filterText !== lastFilterText) {
         const filtered= dataList.filter((item) =>
-            Object.values(item).join().toLowerCase().indexOf(filterText) > -1 );
+            Object.values(item).join().toLowerCase().indexOf(filterText.toLowerCase()) > -1 );
         sortItems(filtered, sortField, sortDescending);
         setFilteredList(filtered);
         setLastFilterText(filterText);
