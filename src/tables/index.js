@@ -1,4 +1,5 @@
 import React from "react";
+import {TextField} from "@material-ui/core"
 import {TablePaging} from "./tableStandard/TablePaging";
 
 const headerConfig = { columns: [
@@ -11,7 +12,8 @@ const headerConfig = { columns: [
 export class TableDemo extends React.Component {
     state = {
         loading: true,
-        users: mockUsers
+        users: mockUsers,
+        filterText: ""
     };
 
     constructor(){
@@ -28,17 +30,29 @@ export class TableDemo extends React.Component {
         this.setState({loading:false});
     }
 
+    handleChange = (name, value) => {
+        this.setState({ [name]: value });
+    };
+
     render() {
-        const {loading, users} = this.state;
+        const {loading, users, filterText} = this.state;
         return (
             <React.Fragment>
-                <h4 style={{marginLeft: 20}}>
-                    Table with paging and search
-                </h4>
+                <div style={{display:"flex"}}>
+                    <h4 style={{marginLeft: 20}}>
+                        Table with paging and search
+                    </h4>
+                    <TextField
+                        label="Search"
+                        style={{marginLeft: 40}}
+                        vaule={filterText}
+                        onChange={(event) => this.handleChange("filterText", event.target.value)}
+                    />
+                </div>
                 <TablePaging loading={loading}
                              dataList={users}
                              headerConfig={headerConfig}
-                             filterText=""
+                             filterText={filterText}
                 />
             </React.Fragment>
         );

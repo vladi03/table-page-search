@@ -7,31 +7,46 @@ import {calcPage, sortItems} from "../helpers/pagingCalc";
 
 export const TablePaging = ({loading, dataList, headerConfig, filterText}) => {
     const itemsPerPage = 10;
+
+
+
+
     const [sortField, setSortField]= useState(headerConfig.columns[0].fieldForSort);
     const [sortDescending, setSortDescending]= useState(false);
     const [paging, setPaging] = useState(() => {
         sortItems(dataList, headerConfig.columns[0].fieldForSort, false);
         return calcPage(dataList,10, 1);
     });
+    const [filteredList, setFilteredList ] = useState(dataList);
+    const [lastFilterText, setLastFilterText ] = useState("");
+
+    if(filterText !== lastFilterText) {
+        const filtered= dataList.filter((item) =>
+            Object.values(item).join().toLowerCase().indexOf(filterText) > -1 );
+        sortItems(filtered, sortField, sortDescending);
+        setFilteredList(filtered);
+        setLastFilterText(filterText);
+        setPaging(calcPage(filtered,10, 1));
+    }
 
     const onSetSortField = (newSortField) => {
         const isDescending = newSortField === sortField && !sortDescending;
 
-        const filterResults = filterText.length === 0 ? dataList
-            : dataList; //add the filter function here
+        //const filterResults = filterText.length === 0 ? dataList
+        //    : dataList; //add the filter function here
 
-        sortItems(filterResults, newSortField, isDescending);
+        sortItems(filteredList, newSortField, isDescending);
 
         setSortDescending(isDescending);
         setSortField(newSortField);
-        setPaging(calcPage(filterResults, itemsPerPage, 1));
+        setPaging(calcPage(filteredList, itemsPerPage, 1));
     };
 
     const onPageChange = (newPage) => {
-        const filterResults = filterText.length === 0 ? dataList
-            : dataList; //add the filter function here
+        //const filterResults = filterText.length === 0 ? dataList
+        //    : dataList; //add the filter function here
 
-        setPaging(calcPage(filterResults, itemsPerPage, newPage));
+        setPaging(calcPage(filteredList, itemsPerPage, newPage));
     };
 
     const tableHeader =(

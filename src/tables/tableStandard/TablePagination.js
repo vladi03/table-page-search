@@ -1,7 +1,7 @@
 import React from "react";
-import { useStyles } from "./PaginationStype";
 import { Typography, IconButton,FormControl, Select} from '@material-ui/core';
 import { ChevronLeft,FirstPage, ChevronRight, LastPage } from '@material-ui/icons';
+import { useStyles } from "./PaginationStype";
 
 export const TablePagination = (
     { pageList, pagingMessage, currentPageNum,
