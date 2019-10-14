@@ -13,7 +13,7 @@
     "test": "mocha ./unit_test/.setup.js --require @babel/register --recursive ./unit_test",
     "start": "nwb serve-react-app --copy-files",
     "prepublish": "npm-run-all build",
-    "predeploy:docs": "npm run build",
+    "predeploy:docs": "npm run build:local",
     "deploy:docs": "gh-pages -d dist"
   },
   "repository": {
