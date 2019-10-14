@@ -5,12 +5,8 @@ import {TableRow ,TableCell} from "@material-ui/core";
 import { TableHeaderSort } from "./TableHeaderSort";
 import {calcPage, sortItems} from "../helpers/pagingCalc";
 
-export const TablePaging = ({loading, dataList, headerConfig, filterText}) => {
+export const TablePaging = ({loading, dataList, headerConfig, filterText, tableStyleName}) => {
     const itemsPerPage = 10;
-
-
-
-
     const [sortField, setSortField]= useState(headerConfig.columns[0].fieldForSort);
     const [sortDescending, setSortDescending]= useState(false);
     const [paging, setPaging] = useState(() => {
@@ -64,6 +60,7 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText}) => {
                 tableHeader={tableHeader}
                 condensed={false}
                 onPageChange={onPageChange}
+                tableStyleName={tableStyleName}
             />
         </SpinnerDownloading>
     )

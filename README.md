@@ -7,7 +7,7 @@ npm install table-page-search
 ```
 
 # Example
-The following example show a table with all the functionality:
+The following example shows a table with all the functionality:
 [Running Example](https://vladi03.github.io/table-page-search/ "Table Page Search")
 
 # Sample Header Config
@@ -38,8 +38,8 @@ const users = [
 # Sample Component Use
 ```javascript
   <TablePaging  loading={loading}
-  				dataList={users}
-  				headerConfig={headerConfig}
-  				filterText={filterText}
+                dataList={users}
+                headerConfig={headerConfig}
+                filterText={filterText}
   />
 ```

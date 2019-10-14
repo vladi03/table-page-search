@@ -1,5 +1,5 @@
 import React from "react";
-import {TextField} from "@material-ui/core"
+import {TextField, FormControlLabel, Checkbox} from "@material-ui/core"
 import {TablePaging} from "./tableStandard/TablePaging";
 
 const headerConfig = { columns: [
@@ -9,16 +9,19 @@ const headerConfig = { columns: [
     ]
 };
 
+export {TablePaging};
+
 export class TableDemo extends React.Component {
     state = {
         loading: true,
         users: mockUsers,
-        filterText: ""
+        filterText: "",
+        removeStyling: true
     };
 
-    constructor(){
+    constructor() {
         super();
-        this.timeOut = this.timeOut.bind(this)
+        this.timeOut = this.timeOut.bind(this);
     }
 
     componentDidMount() {
@@ -35,9 +38,10 @@ export class TableDemo extends React.Component {
     };
 
     render() {
-        const {loading, users, filterText} = this.state;
+        const {loading, users, filterText, removeStyling} = this.state;
         return (
             <React.Fragment>
+
                 <div style={{display:"flex"}}>
                     <h4 style={{marginLeft: 20}}>
                         Table with paging and search
@@ -48,11 +52,24 @@ export class TableDemo extends React.Component {
                         vaule={filterText}
                         onChange={(event) => this.handleChange("filterText", event.target.value)}
                     />
+                    <FormControlLabel
+                        style={{marginLeft: 10}}
+                        control={
+                            <Checkbox
+                                checked={removeStyling}
+                                onChange={() => this.setState({removeStyling: !removeStyling}) }
+                                value="checkedB"
+                                color="primary"
+                            />
+                        }
+                        label="Remove Styling"
+                    />
                 </div>
                 <TablePaging loading={loading}
                              dataList={users}
                              headerConfig={headerConfig}
                              filterText={filterText}
+                             tableStyleName={removeStyling ? "" : "stripe-table"}
                 />
             </React.Fragment>
         );

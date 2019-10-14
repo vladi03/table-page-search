@@ -3,11 +3,11 @@ import { Table, TableBody, TableRow, TableCell } from '@material-ui/core';
 import { TablePagination } from "./TablePagination";
 import {ListNoData} from "../extras/NoData";
 
-export const TableSkeletonPaging = ({tableHeader, tableRows, paging, onPageChange, condensed}) => {
+export const TableSkeletonPaging = ({tableHeader, tableRows, paging, tableStyleName, onPageChange, condensed}) => {
 
     return (
         <React.Fragment>
-            <Table className="stripe-table">
+            <Table className={tableStyleName}>
                 {tableHeader}
                 <TableBody>
                     {paging.rows.map(tableRows)}
