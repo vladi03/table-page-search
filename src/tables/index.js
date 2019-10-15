@@ -11,6 +11,7 @@ const headerConfig = { columns: [
 
 export {TablePaging};
 
+
 export class TableDemo extends React.Component {
     state = {
         loading: true,
@@ -27,6 +28,13 @@ export class TableDemo extends React.Component {
     componentDidMount() {
         setTimeout(this.timeOut, 2000);
     }
+
+    searchName(itemList) {
+        const {filterText} = this.state;
+        return itemList.filter((user) => {
+            return user.firstName.toLowerCase().indexOf(filterText.toLowerCase()) > -1;
+        });
+    };
 
     timeOut() {
         // noinspection JSCheckFunctionSignatures
@@ -70,6 +78,7 @@ export class TableDemo extends React.Component {
                              headerConfig={headerConfig}
                              filterText={filterText}
                              tableStyleName={removeStyling ? "" : "stripe-table"}
+                             //searchFunction={(dataList) => this.searchName(dataList)}
                 />
             </React.Fragment>
         );

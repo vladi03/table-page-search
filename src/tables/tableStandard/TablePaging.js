@@ -6,7 +6,8 @@ import {TableRow ,TableCell} from "@material-ui/core";
 import { TableHeaderSort } from "./TableHeaderSort";
 import {calcPage, sortItems} from "../helpers/pagingCalc";
 
-export const TablePaging = ({loading, dataList, headerConfig, filterText, tableStyleName}) => {
+export const TablePaging = ({loading, dataList, headerConfig, filterText, tableStyleName,
+                                searchFunction}) => {
     const itemsPerPage = 10;
     const [sortField, setSortField]= useState(headerConfig.columns[0].fieldForSort);
     const [sortDescending, setSortDescending]= useState(false);
@@ -18,8 +19,9 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
     const [lastFilterText, setLastFilterText ] = useState("");
 
     if((filterText || filterText === "" ) && filterText !== lastFilterText) {
-        const filtered= dataList.filter((item) =>
+        const filtered = searchFunction ? searchFunction(dataList) : dataList.filter((item) =>
             Object.values(item).join().toLowerCase().indexOf(filterText.toLowerCase()) > -1 );
+
         sortItems(filtered, sortField, sortDescending);
         setFilteredList(filtered);
         setLastFilterText(filterText);
@@ -64,15 +66,16 @@ TablePaging.propTypes = {
     dataList: PropTypes.array.isRequired,
     headerConfig: PropTypes.object.isRequired,
     filterText: PropTypes.string,
-    tableStyleName: PropTypes.string
+    tableStyleName: PropTypes.string,
+    searchFunction: PropTypes.func
 };
 
 export const tableRows = (headerConfig) => {
 
     return (row, index) => (
         <TableRow key={index} style={{height: 39}}>
-            {headerConfig.columns.map((header) => (
-                <TableCell style={{fontSize: "14px"}} >
+            {headerConfig.columns.map((header, index) => (
+                <TableCell key={index} style={{fontSize: "14px"}} >
                     <span>{row[header.fieldForSort]}</span>
                 </TableCell>
             ))}
