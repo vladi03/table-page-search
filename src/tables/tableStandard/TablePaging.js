@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import PropTypes from 'prop-types';
 import {SpinnerDownloading} from "../extras/SpinnerDownloading";
 import {TableSkeletonPaging} from "./TableSkeletonPaging";
 import {TableRow ,TableCell} from "@material-ui/core";
@@ -16,7 +17,7 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
     const [filteredList, setFilteredList ] = useState(dataList);
     const [lastFilterText, setLastFilterText ] = useState("");
 
-    if(filterText !== lastFilterText) {
+    if((filterText || filterText === "" ) && filterText !== lastFilterText) {
         const filtered= dataList.filter((item) =>
             Object.values(item).join().toLowerCase().indexOf(filterText.toLowerCase()) > -1 );
         sortItems(filtered, sortField, sortDescending);
@@ -27,21 +28,13 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
 
     const onSetSortField = (newSortField) => {
         const isDescending = newSortField === sortField && !sortDescending;
-
-        //const filterResults = filterText.length === 0 ? dataList
-        //    : dataList; //add the filter function here
-
         sortItems(filteredList, newSortField, isDescending);
-
         setSortDescending(isDescending);
         setSortField(newSortField);
         setPaging(calcPage(filteredList, itemsPerPage, 1));
     };
 
     const onPageChange = (newPage) => {
-        //const filterResults = filterText.length === 0 ? dataList
-        //    : dataList; //add the filter function here
-
         setPaging(calcPage(filteredList, itemsPerPage, newPage));
     };
 
@@ -56,7 +49,7 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
         <SpinnerDownloading spinnerSize={50} loading={loading}>
             <TableSkeletonPaging
                 paging={paging}
-                tableRows={tableRows()}
+                tableRows={tableRows(headerConfig)}
                 tableHeader={tableHeader}
                 condensed={false}
                 onPageChange={onPageChange}
@@ -66,19 +59,23 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
     )
 };
 
-export const tableRows = () => {
+TablePaging.propTypes = {
+    loading: PropTypes.bool,
+    dataList: PropTypes.array.isRequired,
+    headerConfig: PropTypes.object.isRequired,
+    filterText: PropTypes.string,
+    tableStyleName: PropTypes.string
+};
+
+export const tableRows = (headerConfig) => {
 
     return (row, index) => (
         <TableRow key={index} style={{height: 39}}>
-            <TableCell style={{fontSize: "14px"}} >
-                <span>{row.firstName}</span>
-            </TableCell>
-            <TableCell style={{fontSize: "14px"}} >
-                <span>{row.lastName}</span>
-            </TableCell>
-            <TableCell style={{fontSize: "14px"}} >
-                <span>{row.location}</span>
-            </TableCell>
+            {headerConfig.columns.map((header) => (
+                <TableCell style={{fontSize: "14px"}} >
+                    <span>{row[header.fieldForSort]}</span>
+                </TableCell>
+            ))}
         </TableRow>
     );
 };
