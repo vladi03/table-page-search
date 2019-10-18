@@ -1,8 +1,9 @@
 import React from "react";
 import {TextField, FormControlLabel, Checkbox} from "@material-ui/core"
 import {TablePaging} from "./tableStandard/TablePaging";
+export {TableSkeletonPaging} from "./tableStandard/TableSkeletonPaging";
 
-const headerConfig = { columns: [
+export const headerConfig = { columns: [
         { fieldForSort: "firstName", columnLabel: "Name First" },
         { fieldForSort: "lastName", columnLabel: "Name Last" },
         { fieldForSort: "location", columnLabel: "Location" }
@@ -85,7 +86,7 @@ export class TableDemo extends React.Component {
     }
 }
 
-const mockUsers = [
+export const mockUsers = [
     {
         "id": 0,
         "firstName": "Cassandra",

@@ -54,6 +54,7 @@ export const TablePagination = (
                     <div key={index} className={classes.pageButtonsContainer}>
                         <IconButton className={classes.pageButton}
                                     onClick={() => onPageChange(page)}
+                                    id={`pageNumButton-${index}`}
                                     color="primary"
                                     style={{
                                         backgroundColor: page === currentPageNum ? "#428bca" : "",

@@ -12,7 +12,7 @@
     "version:patch": "npm version patch",
     "test": "mocha ./unit_test/.setup.js --require @babel/register --recursive ./unit_test",
     "start": "nwb serve-react-app --copy-files",
-    "prepublish": "npm-run-all build",
+    "prepair": "npm-run-all build",
     "predeploy:docs": "npm run build:local",
     "deploy:docs": "gh-pages -d dist"
   },
@@ -24,7 +24,7 @@
     "components",
     "react-component",
     "table",
-    "reactjs"
+    "react"
   ],
   "author": "Vlad Martinez",
   "license": "MIT",
@@ -49,11 +49,13 @@
     "npm-run-all": "^4.1.5"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
     "@material-ui/core": "^4.5.0",
     "@material-ui/icons": "^4.4.3",
     "@material-ui/styles": "^4.5.0",
-    "classnames": "^2.2.6",
-    "prop-types": "^15.7.2",
     "react": "^16.10.2",
     "react-dom": "^16.10.2"
   }
