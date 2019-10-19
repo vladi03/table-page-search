@@ -1,6 +1,6 @@
 {
   "name": "table-page-search",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "material-ui table with opinionated styling",
   "main": "./lib/index.js",
   "files": [
