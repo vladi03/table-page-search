@@ -2,12 +2,10 @@ import 'jsdom-global/register';
 import React from 'react';
 import assert from "assert";
 import { mount } from 'enzyme';
-import {TableDemo} from "../src/tables";
-import {TableRow} from '@material-ui/core'
-import {TablePaging, mockUsers, headerConfig, TableSkeletonPaging} from "../src/tables";
+import {TablePaging, mockUsers, headerConfig} from "../src/tables";
 
 describe('Demo Table Load', () => {
-    let curPage = -1;
+
     const wrapper = mount(<TablePaging loading={false}
                                        dataList={mockUsers}
                                        headerConfig={headerConfig}
@@ -15,17 +13,50 @@ describe('Demo Table Load', () => {
                                        tableStyleName={"stripe-table"}
         //searchFunction={(dataList) => this.searchName(dataList)}
     />);
+
+    const getCellValue = (row,column, wrap) => {
+        const wrapCalc = wrap || wrapper;
+        const rows = wrapCalc.find("tbody tr.MuiTableRow-root");
+        const columns = rows.at(row).find(".MuiTableCell-root");
+        const cell1 = columns.at(column).props();
+        return cell1.children.props.children;
+    };
+
     it("loaded", () => {
-        const tableRows = wrapper.find(".MuiTableRow-root");
-        assert.strictEqual(tableRows.length, 11, "table loaded");
+        //const tableRows = wrapper.find(".MuiTableRow-root");
+        const rows = wrapper.find("tbody tr.MuiTableRow-root");
+        assert.strictEqual(rows.length, 10, "table loaded");
     });
 
     it("initial sort order", ()=> {
-        const firstRows = wrapper.find("tbody tr.MuiTableRow-root");
-        const columns = firstRows.find("span");
-        console.log(columns.at(1).props());
+        assert.strictEqual(getCellValue(0,0),"Amie");
+        assert.strictEqual(getCellValue(0,1),"Shepherd");
+        assert.strictEqual(getCellValue(9,0),"Lacy");
+    });
 
-        assert.strictEqual(firstRows.length, 10, "table loaded");
-        assert.strictEqual(columns.length, 3, "table loaded");
+    it("sort table", ()=> {
+        const rows = wrapper.find("thead tr.MuiTableRow-root");
+        const columns = rows.at(0).find(".MuiTableCell-root");
+        const column2 = columns.at(1).find(".MuiButtonBase-root");
+        column2.simulate("click");
+
+        assert.strictEqual(rows.length, 1, "header row");
+        assert.strictEqual(columns.length, 3, "header row");
+        assert.strictEqual(getCellValue(0,0),"Beach");
+        assert.strictEqual(getCellValue(0,1),"Abbott");
+    });
+
+    it("filter", ()=>{
+        const wrapperSearch = mount(<TablePaging loading={false}
+                                           dataList={mockUsers}
+                                           headerConfig={headerConfig}
+                                           filterText={"alv"}
+                                           tableStyleName={"stripe-table"}
+            //searchFunction={(dataList) => this.searchName(dataList)}
+        />);
+
+        const rows = wrapperSearch.find("tbody tr.MuiTableRow-root");
+        assert.strictEqual(rows.length, 1, "table loaded");
+        assert.strictEqual(getCellValue(0,0, wrapperSearch),"Lakisha");
     });
 });
