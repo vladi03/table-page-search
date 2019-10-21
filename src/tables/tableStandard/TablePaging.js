@@ -11,34 +11,26 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
     const itemsPerPage = 10;
     const [sortField, setSortField]= useState(headerConfig.columns[0].fieldForSort);
     const [sortDescending, setSortDescending]= useState(false);
-    const [paging, setPaging] = useState(() => {
-        sortItems(dataList, headerConfig.columns[0].fieldForSort, false);
-        return calcPage(dataList,10, 1);
-    });
-    const [filteredList, setFilteredList ] = useState(dataList);
-    const [lastFilterText, setLastFilterText ] = useState("");
+    const [activePage, setActivePage] = useState(1);
 
-    if((filterText || filterText === "" ) && filterText !== lastFilterText) {
-        const filtered = searchFunction ? searchFunction(dataList) : dataList.filter((item) =>
+    let filteredList = [...dataList];
+    if(filterText && filterText.length > 0) {
+        filteredList = searchFunction ? searchFunction(dataList) : dataList.filter((item) =>
             Object.values(item).join().toLowerCase().indexOf(filterText.toLowerCase()) > -1 );
-
-        sortItems(filtered, sortField, sortDescending);
-        setFilteredList(filtered);
-        setLastFilterText(filterText);
-        setPaging(calcPage(filtered,10, 1));
     }
 
     const onSetSortField = (newSortField) => {
         const isDescending = newSortField === sortField && !sortDescending;
-        sortItems(filteredList, newSortField, isDescending);
         setSortDescending(isDescending);
         setSortField(newSortField);
-        setPaging(calcPage(filteredList, itemsPerPage, 1));
     };
 
     const onPageChange = (newPage) => {
-        setPaging(calcPage(filteredList, itemsPerPage, newPage));
+        setActivePage(newPage);
     };
+
+    sortItems(filteredList, sortField, sortDescending);
+    const paging = calcPage(filteredList, itemsPerPage, activePage);
 
     const tableHeader =(
         <TableHeaderSort headerConfig={headerConfig}
