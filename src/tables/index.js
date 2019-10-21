@@ -4,8 +4,11 @@ import {TablePaging} from "./tableStandard/TablePaging";
 export {TableSkeletonPaging} from "./tableStandard/TableSkeletonPaging";
 
 export const headerConfig = { columns: [
-        { fieldForSort: "firstName", columnLabel: "Name First" },
-        { fieldForSort: "lastName", columnLabel: "Name Last" },
+        { fieldForSort: "firstName", columnLabel: "Name First",
+            headerCellStyle:{width:120} },
+        { fieldForSort: "lastName", columnLabel: "Name Last",
+            headerCellStyle:{width:120}
+        },
         { fieldForSort: "location", columnLabel: "Location" },
         { display: (row)=> `${row.lastName}, ${row.firstName}`, columnLabel: "Full Name" }
     ]
@@ -18,7 +21,8 @@ export class TableDemo extends React.Component {
         loading: true,
         users: mockUsers,
         filterText: "",
-        removeStyling: true
+        removeStyling: true,
+        selectedUser: null
     };
 
     constructor() {
@@ -46,8 +50,13 @@ export class TableDemo extends React.Component {
         this.setState({ [name]: value });
     };
 
+    handleRowClick = (user) => {
+        // noinspection JSCheckFunctionSignatures
+        this.setState({selectedUser: user});
+    };
+
     render() {
-        const {loading, users, filterText, removeStyling} = this.state;
+        const {loading, users, filterText, removeStyling, selectedUser} = this.state;
         return (
             <React.Fragment>
 
@@ -73,12 +82,15 @@ export class TableDemo extends React.Component {
                         }
                         label="Remove Styling"
                     />
+                    {selectedUser === null && <span style={{marginTop: 21}} > | Click on a Row</span>}
+                    {selectedUser && <span style={{marginTop: 21}}> | Selected {selectedUser.firstName} {selectedUser.lastName}</span>}
                 </div>
                 <TablePaging loading={loading}
                              dataList={users}
                              headerConfig={headerConfig}
                              filterText={filterText}
                              tableStyleName={removeStyling ? "" : "stripe-table"}
+                             onRowClick = {(user) => this.handleRowClick(user)}
                              //searchFunction={(dataList) => this.searchName(dataList)}
                 />
             </React.Fragment>

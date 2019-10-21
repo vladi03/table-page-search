@@ -5,7 +5,9 @@ export const TableHeaderSort = ({headerConfig, sortField, sortDescending, onSetS
     <TableHead>
         <TableRow>
             {headerConfig.columns.map((config, index) => (
-                <TableCell key={index} className={sortField === config.fieldForSort ? "sorted" : ""}>
+                <TableCell key={index}
+                           style={config.headerCellStyle}
+                           className={sortField === config.fieldForSort ? "sorted" : ""}>
                     {config.fieldForSort ?
                         <TableSortLabel
                             active={sortField === config.fieldForSort}

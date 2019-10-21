@@ -7,7 +7,7 @@ import { TableHeaderSort } from "./TableHeaderSort";
 import {calcPage, sortItems} from "../helpers/pagingCalc";
 
 export const TablePaging = ({loading, dataList, headerConfig, filterText, tableStyleName,
-                                searchFunction}) => {
+                                searchFunction, onRowClick}) => {
     const itemsPerPage = 10;
     const [sortField, setSortField]= useState(headerConfig.columns[0].fieldForSort);
     const [sortDescending, setSortDescending]= useState(false);
@@ -51,7 +51,7 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
         <SpinnerDownloading spinnerSize={50} loading={loading}>
             <TableSkeletonPaging
                 paging={paging}
-                tableRows={tableRows(headerConfig)}
+                tableRows={tableRows(headerConfig, onRowClick)}
                 tableHeader={tableHeader}
                 condensed={false}
                 onPageChange={onPageChange}
@@ -70,14 +70,15 @@ TablePaging.propTypes = {
     searchFunction: PropTypes.func
 };
 
-export const tableRows = (headerConfig) => {
+export const tableRows = (headerConfig, onItemClick) => {
     const getValue = (row, header) => header.display && header.display(row)
                                 || row[header.fieldForSort];
 
+    //const cellStyles = ;
     return (row, index) => (
-        <TableRow key={index} style={{height: 39}}>
+        <TableRow key={index} style={{height: 39}} onClick={() => onItemClick && onItemClick(row)}>
             {headerConfig.columns.map((header, index) => (
-                <TableCell key={index} style={{fontSize: "14px"}} >
+                <TableCell key={index} style={{fontSize: 14, ...header.cellStyle}} >
                     <span>{getValue(row, header)}</span>
                 </TableCell>
             ))}
