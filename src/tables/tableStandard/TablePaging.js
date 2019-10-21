@@ -13,10 +13,12 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
     const [sortDescending, setSortDescending]= useState(false);
     const [activePage, setActivePage] = useState(1);
 
-    let filteredList = [...dataList];
+    let filteredList = [];
     if(filterText && filterText.length > 0) {
         filteredList = searchFunction ? searchFunction(dataList) : dataList.filter((item) =>
             Object.values(item).join().toLowerCase().indexOf(filterText.toLowerCase()) > -1 );
+    } else {
+        filteredList = [...dataList];
     }
 
     const onSetSortField = (newSortField) => {

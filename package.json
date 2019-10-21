@@ -14,8 +14,9 @@
     "test": "mocha ./unit_test/.setup.js --require @babel/register --recursive ./unit_test",
     "start": "nwb serve-react-app --copy-files",
     "prepair": "npm-run-all build",
-    "predeploy:docs": "npm run build:local",
-    "deploy:docs": "gh-pages -d dist"
+    "deploy:docs": "gh-pages -d dist",
+    "sendToNpm":"npm publish",
+    "deployComponent": "npm-run-all version:patch build build:local deploy:docs sendToNpm"
   },
   "repository": {
     "type": "git",
