@@ -1,6 +1,6 @@
 {
   "name": "table-page-search",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "material-ui table with opinionated styling",
   "main": "./lib/index.js",
   "files": [
@@ -15,7 +15,7 @@
     "start": "nwb serve-react-app --copy-files",
     "prepair": "npm-run-all build",
     "deploy:docs": "gh-pages -d dist",
-    "sendToNpm":"npm publish",
+    "sendToNpm": "npm publish",
     "deployComponent": "npm-run-all version:patch build build:local deploy:docs sendToNpm"
   },
   "repository": {
