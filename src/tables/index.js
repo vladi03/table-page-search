@@ -6,12 +6,12 @@ export {TableSkeletonPaging} from "./tableStandard/TableSkeletonPaging";
 export const headerConfig = { columns: [
         { fieldForSort: "firstName", columnLabel: "Name First" },
         { fieldForSort: "lastName", columnLabel: "Name Last" },
-        { fieldForSort: "location", columnLabel: "Location" }
+        { fieldForSort: "location", columnLabel: "Location" },
+        { display: (row)=> `${row.lastName}, ${row.firstName}`, columnLabel: "Full Name" }
     ]
 };
 
 export {TablePaging};
-
 
 export class TableDemo extends React.Component {
     state = {

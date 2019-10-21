@@ -31,6 +31,8 @@ describe('Demo Table Load', () => {
     it("initial sort order", ()=> {
         assert.strictEqual(getCellValue(0,0),"Amie");
         assert.strictEqual(getCellValue(0,1),"Shepherd");
+        assert.strictEqual(getCellValue(0,2),"Catherine");
+        assert.strictEqual(getCellValue(0,3),"Shepherd, Amie");
         assert.strictEqual(getCellValue(9,0),"Lacy");
     });
 
@@ -41,7 +43,7 @@ describe('Demo Table Load', () => {
         column2.simulate("click");
 
         assert.strictEqual(rows.length, 1, "header row");
-        assert.strictEqual(columns.length, 3, "header row");
+        assert.strictEqual(columns.length, 4, "header row");
         assert.strictEqual(getCellValue(0,0),"Beach");
         assert.strictEqual(getCellValue(0,1),"Abbott");
     });

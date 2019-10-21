@@ -71,12 +71,14 @@ TablePaging.propTypes = {
 };
 
 export const tableRows = (headerConfig) => {
+    const getValue = (row, header) => header.display && header.display(row)
+                                || row[header.fieldForSort];
 
     return (row, index) => (
         <TableRow key={index} style={{height: 39}}>
             {headerConfig.columns.map((header, index) => (
                 <TableCell key={index} style={{fontSize: "14px"}} >
-                    <span>{row[header.fieldForSort]}</span>
+                    <span>{getValue(row, header)}</span>
                 </TableCell>
             ))}
         </TableRow>
