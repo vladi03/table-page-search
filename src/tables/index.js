@@ -6,6 +6,8 @@ export {TableSkeletonPaging} from "./tableStandard/TableSkeletonPaging";
 export const headerConfig = {
     key: "id",
     columns: [
+        { fieldForSort: "id", columnLabel: "Id",
+            headerCellStyle:{width:80} },
         { fieldForSort: "firstName", columnLabel: "Name First",
             headerCellStyle:{width:120} },
         { fieldForSort: "lastName", columnLabel: "Name Last",
@@ -102,7 +104,7 @@ export class TableDemo extends React.Component {
 
 export const mockUsers = [
     {
-        "id": 0,
+        "id": 9,
         "firstName": "Cassandra",
         "lastName": "Andrews",
         "location": "Dotsero"
@@ -156,7 +158,7 @@ export const mockUsers = [
         "location": "Onton"
     },
     {
-        "id": 9,
+        "id": 0,
         "firstName": "Amie",
         "lastName": "Shepherd",
         "location": "Catherine"

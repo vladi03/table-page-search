@@ -68,10 +68,19 @@ export const calcLastPageNumber = (rowCount, itemsPerPage) => {
 
 export const sortItems = (itemList, sortField, isDescending) => {
     itemList.sort((a, b) => {
-        if (a[sortField].toLowerCase() < b[sortField].toLowerCase())
-            return isDescending ? 1 : -1;
-        if (a[sortField].toLowerCase() > b[sortField].toLowerCase())
-            return isDescending ? -1 : 1;
+        if(a[sortField].toLowerCase && b[sortField].toLowerCase) {
+            if (a[sortField].toLowerCase() < b[sortField].toLowerCase())
+                return isDescending ? 1 : -1;
+
+            if (a[sortField].toLowerCase() > b[sortField].toLowerCase())
+                return isDescending ? -1 : 1;
+        } else {
+            if (a[sortField] < b[sortField])
+                return isDescending ? 1 : -1;
+
+            if (a[sortField] > b[sortField])
+                return isDescending ? -1 : 1;
+        }
         return 0;
     });
 };

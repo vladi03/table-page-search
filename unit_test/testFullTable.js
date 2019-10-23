@@ -29,23 +29,23 @@ describe('Demo Table Load', () => {
     });
 
     it("initial sort order", ()=> {
-        assert.strictEqual(getCellValue(0,0),"Amie");
-        assert.strictEqual(getCellValue(0,1),"Shepherd");
-        assert.strictEqual(getCellValue(0,2),"Catherine");
-        assert.strictEqual(getCellValue(0,3),"Shepherd, Amie");
-        assert.strictEqual(getCellValue(9,0),"Lacy");
+        assert.strictEqual(getCellValue(0,1),"Amie");
+        assert.strictEqual(getCellValue(0,2),"Shepherd");
+        assert.strictEqual(getCellValue(0,3),"Catherine");
+        assert.strictEqual(getCellValue(0,4),"Shepherd, Amie");
+        assert.strictEqual(getCellValue(9,1),"Cassandra");
     });
 
     it("sort table", ()=> {
         const rows = wrapper.find("thead tr.MuiTableRow-root");
         const columns = rows.at(0).find(".MuiTableCell-root");
-        const column2 = columns.at(1).find(".MuiButtonBase-root");
+        const column2 = columns.at(2).find(".MuiButtonBase-root");
         column2.simulate("click");
 
         assert.strictEqual(rows.length, 1, "header row");
-        assert.strictEqual(columns.length, 4, "header row");
-        assert.strictEqual(getCellValue(0,0),"Beach");
-        assert.strictEqual(getCellValue(0,1),"Abbott");
+        assert.strictEqual(columns.length, 5, "header row");
+        assert.strictEqual(getCellValue(0,0), 16);
+        assert.strictEqual(getCellValue(0,2),"Abbott");
     });
 
     it("filter", ()=>{
@@ -59,6 +59,6 @@ describe('Demo Table Load', () => {
 
         const rows = wrapperSearch.find("tbody tr.MuiTableRow-root");
         assert.strictEqual(rows.length, 1, "table loaded");
-        assert.strictEqual(getCellValue(0,0, wrapperSearch),"Lakisha");
+        assert.strictEqual(getCellValue(0,1, wrapperSearch),"Lakisha");
     });
 });
