@@ -65,14 +65,25 @@ TablePaging.propTypes = {
 };
 
 export const tableRows = (headerConfig, onItemClick) => {
+    const [selectedRowId, setSelectedRowId ] = useState(null);
     const getValue = (row, header) => header.display && header.display(row)
                                 || row[header.fieldForSort];
 
-    //const cellStyles = ;
+    const onSelectRow = (row)=> {
+        if(headerConfig.key)
+            setSelectedRowId(row[headerConfig.key]);
+
+        onItemClick(row)
+    };
+
     return (row, index) => (
-        <TableRow key={index} style={{height: 39}} onClick={() => onItemClick && onItemClick(row)}>
+        <TableRow key={index} style={{height: 39}} onClick={() => onItemClick && onSelectRow(row)}>
             {headerConfig.columns.map((header, index) => (
-                <TableCell key={index} style={{fontSize: 14, ...header.cellStyle}} >
+                <TableCell key={index} style={{
+                    fontSize: 14,
+                    backgroundColor: selectedRowId !== null && headerConfig.key &&
+                                        selectedRowId === row[headerConfig.key] && "#cfcdd1",
+                    ...header.cellStyle}} >
                     <span>{getValue(row, header)}</span>
                 </TableCell>
             ))}

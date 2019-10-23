@@ -3,7 +3,9 @@ import {TextField, FormControlLabel, Checkbox} from "@material-ui/core"
 import {TablePaging} from "./tableStandard/TablePaging";
 export {TableSkeletonPaging} from "./tableStandard/TableSkeletonPaging";
 
-export const headerConfig = { columns: [
+export const headerConfig = {
+    key: "id",
+    columns: [
         { fieldForSort: "firstName", columnLabel: "Name First",
             headerCellStyle:{width:120} },
         { fieldForSort: "lastName", columnLabel: "Name Last",
@@ -27,11 +29,11 @@ export class TableDemo extends React.Component {
 
     constructor() {
         super();
-        this.timeOut = this.timeOut.bind(this);
+        //this.timeOut = this.timeOut.bind(this);
     }
 
     componentDidMount() {
-        setTimeout(this.timeOut, 2000);
+        setTimeout(() => this.timeOut(), 2000);
     }
 
     searchName(itemList) {
