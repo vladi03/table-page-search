@@ -7,7 +7,7 @@ import { TableHeaderSort } from "./TableHeaderSort";
 import {calcPage, sortItems} from "../helpers/pagingCalc";
 
 export const TablePaging = ({loading, dataList, headerConfig, filterText, tableStyleName,
-                                searchFunction, onRowClick}) => {
+                                searchFunction, onRowClick, condensed}) => {
     const itemsPerPage = 10;
     const [sortField, setSortField]= useState(headerConfig.columns[0].fieldForSort);
     const [sortDescending, setSortDescending]= useState(false);
@@ -47,7 +47,7 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
                 paging={paging}
                 tableRows={tableRows(headerConfig, onRowClick)}
                 tableHeader={tableHeader}
-                condensed={false}
+                condensed={condensed}
                 onPageChange={onPageChange}
                 tableStyleName={tableStyleName}
             />
@@ -61,7 +61,9 @@ TablePaging.propTypes = {
     headerConfig: PropTypes.object.isRequired,
     filterText: PropTypes.string,
     tableStyleName: PropTypes.string,
-    searchFunction: PropTypes.func
+    searchFunction: PropTypes.func,
+    onRowClick: PropTypes.func,
+    condensed: PropTypes.bool,
 };
 
 export const tableRows = (headerConfig, onItemClick) => {
