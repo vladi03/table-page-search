@@ -1,6 +1,6 @@
 {
   "name": "table-page-search",
-  "version": "0.3.6",
+  "version": "0.4.0",
   "description": "material-ui table with opinionated styling",
   "main": "./lib/index.js",
   "files": [
@@ -16,7 +16,7 @@
     "prepair": "npm-run-all build",
     "deploy:docs": "gh-pages -d dist",
     "sendToNpm": "npm publish",
-    "deployComponent": "npm-run-all version:patch build build:local deploy:docs sendToNpm"
+    "deployComponent": "npm-run-all test version:patch build build:local deploy:docs sendToNpm"
   },
   "repository": {
     "type": "git",

@@ -15,7 +15,11 @@ The following example shows a table with all the functionality:
 const headerConfig = { columns: [
         { fieldForSort: "firstName", columnLabel: "Name First" },
         { fieldForSort: "lastName", columnLabel: "Name Last" },
-        { fieldForSort: "location", columnLabel: "Location" }
+        { fieldForSort: "location.city", columnLabel: "Location" },
+        {
+            display: (row)=> `${row.lastName}, ${row.firstName}`,
+            columnLabel: "Full Name"
+        }
     ]
 };
 //Sample Data
@@ -24,13 +28,13 @@ const users = [
         "id": 0,
         "firstName": "Cassandra",
         "lastName": "Andrews",
-        "location": "Dotsero"
+        "location": { "city" : "Dotsero" }
     },
     {
         "id": 1,
         "firstName": "Lakisha",
         "lastName": "Alvarez",
-        "location": "Winfred"
+        "location": { "city" :  "Winfred" }
     }
 ];
 ```
