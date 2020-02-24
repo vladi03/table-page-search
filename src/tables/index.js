@@ -7,13 +7,14 @@ export const headerConfig = {
     key: "id",
     columns: [
         { fieldForSort: "id", columnLabel: "Id",
-            headerCellStyle:{width:80} },
+            headerCellStyle:{width:80}, hideWhenCondensed: true
+        },
         { fieldForSort: "firstName", columnLabel: "Name First",
             headerCellStyle:{width:120} },
         { fieldForSort: "lastName", columnLabel: "Name Last",
             headerCellStyle:{width:120}
         },
-        { fieldForSort: "location", columnLabel: "Location" },
+        { fieldForSort: "location.city", columnLabel: "Location" },
         { display: (row)=> `${row.lastName}, ${row.firstName}`, columnLabel: "Full Name" }
     ]
 };
@@ -107,114 +108,114 @@ export const mockUsers = [
         "id": 9,
         "firstName": "Cassandra",
         "lastName": "Andrews",
-        "location": "Dotsero"
+        "location": { "city" : "Dotsero" }
     },
     {
         "id": 1,
         "firstName": "Lakisha",
         "lastName": "Alvarez",
-        "location": "Winfred"
+        "location": { "city" : "Winfred" }
     },
     {
         "id": 2,
         "firstName": "Kathy",
         "lastName": "Fox",
-        "location": "Gorst"
+        "location": { "city" : "Gorst"}
     },
     {
         "id": 3,
         "firstName": "Cote",
         "lastName": "Haynes",
-        "location": "Fairhaven"
+        "location": { "city" : "Fairhaven"}
     },
     {
         "id": 4,
         "firstName": "Toni",
         "lastName": "Rose",
-        "location": "Leroy"
+        "location": { "city" : "Leroy"}
     },
     {
         "id": 5,
         "firstName": "Lauren",
         "lastName": "Clark",
-        "location": "Marne"
+        "location": { "city" : "Marne"}
     },
     {
         "id": 6,
         "firstName": "Mckenzie",
         "lastName": "Davidson",
-        "location": "Tetherow"
+        "location": { "city" : "Tetherow"}
     },
     {
         "id": 7,
         "firstName": "Mallory",
         "lastName": "Roman",
-        "location": "Sterling"
+        "location": { "city" : "Sterling" }
     },
     {
         "id": 8,
         "firstName": "Walls",
         "lastName": "Mack",
-        "location": "Onton"
+        "location": { "city" : "Onton" }
     },
     {
         "id": 0,
         "firstName": "Amie",
         "lastName": "Shepherd",
-        "location": "Catherine"
+        "location": { "city" : "Catherine"}
     },
     {
         "id": 10,
         "firstName": "Jewel",
         "lastName": "Wise",
-        "location": "Rutherford"
+        "location": { "city" : "Rutherford"}
     },
     {
         "id": 11,
         "firstName": "Christina",
         "lastName": "Woodard",
-        "location": "Websterville"
+        "location": { "city" : "Websterville"}
     },
     {
         "id": 12,
         "firstName": "Nicole",
         "lastName": "Tillman",
-        "location": "Beaulieu"
+        "location": { "city" : "Beaulieu"}
     },
     {
         "id": 13,
         "firstName": "Robinson",
         "lastName": "Larsen",
-        "location": "Benson"
+        "location": { "city" : "Benson"}
     },
     {
         "id": 14,
         "firstName": "Carissa",
         "lastName": "Hogan",
-        "location": "Kenwood"
+        "location": { "city" : "Kenwood" }
     },
     {
         "id": 15,
         "firstName": "Garrett",
         "lastName": "Sutton",
-        "location": "Torboy"
+        "location": { "city" : "Torboy"}
     },
     {
         "id": 16,
         "firstName": "Beach",
         "lastName": "Abbott",
-        "location": "Ruckersville"
+        "location": { "city" : "Ruckersville"}
     },
     {
         "id": 17,
         "firstName": "Lacy",
         "lastName": "Bird",
-        "location": "Belleview"
+        "location": { "city" : "Belleview"}
     },
     {
         "id": 18,
         "firstName": "Misty",
         "lastName": "Cooley",
-        "location": "Fowlerville"
+        "location": { "city" : "Fowlerville"}
     }
 ];

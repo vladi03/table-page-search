@@ -1,3 +1,4 @@
+import {getObjectValue} from "./objectValue";
 
 export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, ) => {
     const result = {
@@ -67,18 +68,21 @@ export const calcLastPageNumber = (rowCount, itemsPerPage) => {
 };
 
 export const sortItems = (itemList, sortField, isDescending) => {
-    itemList.sort((a, b) => {
-        if(a[sortField].toLowerCase && b[sortField].toLowerCase) {
-            if (a[sortField].toLowerCase() < b[sortField].toLowerCase())
+    itemList.sort((aIn, bIn) => {
+        const aValue = getObjectValue(aIn, sortField);
+        const bValue = getObjectValue(bIn, sortField);
+
+        if(aValue.toLowerCase && bValue.toLowerCase) {
+            if (aValue.toLowerCase() < bValue.toLowerCase())
                 return isDescending ? 1 : -1;
 
-            if (a[sortField].toLowerCase() > b[sortField].toLowerCase())
+            if (aValue.toLowerCase() > bValue.toLowerCase())
                 return isDescending ? -1 : 1;
         } else {
-            if (a[sortField] < b[sortField])
+            if (aValue < bValue)
                 return isDescending ? 1 : -1;
 
-            if (a[sortField] > b[sortField])
+            if (aValue > bValue)
                 return isDescending ? -1 : 1;
         }
         return 0;

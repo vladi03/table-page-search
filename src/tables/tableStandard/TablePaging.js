@@ -5,6 +5,8 @@ import {TableSkeletonPaging} from "./TableSkeletonPaging";
 import {TableRow ,TableCell} from "@material-ui/core";
 import { TableHeaderSort } from "./TableHeaderSort";
 import {calcPage, sortItems} from "../helpers/pagingCalc";
+import {getObjectValue, getObjectJoin} from "../helpers/objectValue";
+
 
 export const TablePaging = ({loading, dataList, headerConfig, filterText, tableStyleName,
                                 searchFunction, onRowClick, condensed}) => {
@@ -12,11 +14,13 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
     const [sortField, setSortField]= useState(headerConfig.columns[0].fieldForSort);
     const [sortDescending, setSortDescending]= useState(false);
     const [activePage, setActivePage] = useState(1);
+    const filterTextLower  = filterText && filterText.toLowerCase();
 
     let filteredList = [];
     if(filterText && filterText.length > 0) {
-        filteredList = searchFunction ? searchFunction(dataList) : dataList.filter((item) =>
-            Object.values(item).join().toLowerCase().indexOf(filterText.toLowerCase()) > -1 );
+        filteredList = searchFunction ? searchFunction(dataList) : dataList.filter((item) => {
+            return item && getObjectJoin(item).toLowerCase().indexOf(filterTextLower) > -1;//.indexOf(filterText.toLowerCase()) > -1;
+        });
     } else {
         filteredList = [...dataList];
     }
@@ -69,7 +73,7 @@ TablePaging.propTypes = {
 export const tableRows = (headerConfig, onItemClick) => {
     const [selectedRowId, setSelectedRowId ] = useState(null);
     const getValue = (row, header) => header.display && header.display(row)
-                                || row[header.fieldForSort];
+                                || getObjectValue(row,header.fieldForSort);
 
     const onSelectRow = (row)=> {
         if(headerConfig.key)
