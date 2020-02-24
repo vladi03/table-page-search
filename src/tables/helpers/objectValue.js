@@ -11,5 +11,6 @@ export const getObjectValue = (targetObject, fieldName) => {
 };
 
 export const getObjectJoin = (targetObject) => {
-    return Object.values(targetObject).map((item) => typeof(item) === "object" ? getObjectJoin(item) : item).join();
+    return targetObject &&
+        (Object.values(targetObject).map((item) => typeof(item) === "object" ? getObjectJoin(item) : item).join()) || "";
 };

@@ -9,7 +9,8 @@ const testObject = {
         zipCode: "12399",
         mailBox: {
             color: "green",
-            height: 3.4
+            height: 3.4,
+            bolts: null
         }
     }
 };
@@ -41,6 +42,11 @@ describe("get values from object", () =>{
 describe("get join from object", () =>{
     it("get values from good object", () => {
         const result = getObjectJoin(testObject);
-        assert.strictEqual(result, "jim,bob,123 red neck ville,12399,green,3.4");
-    })
+        assert.strictEqual(result, "jim,bob,123 red neck ville,12399,green,3.4,");
+    });
+
+    it("pass null", () => {
+        const result = getObjectJoin(null);
+        assert.strictEqual(result, "");
+    });
 });
