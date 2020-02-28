@@ -12,8 +12,10 @@ The following example shows a table with all the functionality:
 
 # Sample Header Config
 ``` javascript
-const headerConfig = { columns: [
-        { fieldForSort: "firstName", columnLabel: "Name First" },
+const headerConfig = {
+    key: "id",
+    columns: [
+        { fieldForSort: "firstName", columnLabel: "Name First", headerCellStyle:{width:80} },
         { fieldForSort: "lastName", columnLabel: "Name Last" },
         { fieldForSort: "location.city", columnLabel: "Location" },
         {
