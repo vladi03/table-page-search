@@ -40,11 +40,6 @@ body {
   max-width: 100px;
 }
 
-tr:hover td {
-  background-color: #fafaf9;
-
-}
-
 .grid-transition div {
   -webkit-transition: width 2s; /* Safari */
   -o-transition: width 2s;
@@ -55,4 +50,4 @@ tr:hover td {
     color: white !important;
 }
 
-/*# sourceMappingURL=app.ae1d6eee.css.map*/
+/*# sourceMappingURL=app.465140f0.css.map*/
