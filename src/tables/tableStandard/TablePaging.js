@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import PropTypes from 'prop-types';
 import {SpinnerDownloading} from "../extras/SpinnerDownloading";
 import {TableSkeletonPaging} from "./TableSkeletonPaging";
-import {TableRow ,TableCell} from "@material-ui/core";
+import {TableRow ,TableCell, makeStyles} from "@material-ui/core";
 import { TableHeaderSort } from "./TableHeaderSort";
 import {calcPage, sortItems} from "../helpers/pagingCalc";
 import {getObjectValue, getObjectJoin} from "../helpers/objectValue";
@@ -71,28 +71,50 @@ TablePaging.propTypes = {
 };
 
 export const tableRows = (headerConfig, onItemClick) => {
+    const classes = useStyles();
     const [selectedRowId, setSelectedRowId ] = useState(null);
+    const [selectedRowIndex, setSelectedRowIndex ] = useState(-1);
     const getValue = (row, header) => header.display && header.display(row)
                                 || getObjectValue(row,header.fieldForSort);
 
-    const onSelectRow = (row)=> {
+    const onSelectRow = (row, index)=> {
         if(headerConfig.key)
             setSelectedRowId(row[headerConfig.key]);
-
+        setSelectedRowIndex(index);
         onItemClick(row)
     };
 
-    return (row, index) => (
-        <TableRow key={index} style={{height: 39}} onClick={() => onItemClick && onSelectRow(row)}>
-            {headerConfig.columns.map((header, index) => (
-                <TableCell key={index} style={{
-                    fontSize: 14,
-                    backgroundColor: selectedRowId !== null && headerConfig.key &&
-                                        selectedRowId === row[headerConfig.key] && "#cfcdd1",
-                    ...header.cellStyle}} >
-                    <span>{getValue(row, header)}</span>
-                </TableCell>
-            ))}
-        </TableRow>
-    );
+    return (row, index) => {
+        const hasClick = onItemClick && selectedRowIndex !== index;
+
+        /** @namespace header.cellStyle */
+        return (
+            <TableRow key={index}
+                      className={hasClick ? classes.rowWithClick : classes.rowWithoutClick}
+                      onClick={() => hasClick ? onSelectRow(row, index) : undefined}>
+                {headerConfig.columns.map((header, index) => (
+                    <TableCell key={index} style={{
+                        fontSize: 14,
+                        backgroundColor: selectedRowId !== null && headerConfig.key &&
+                        selectedRowId === row[headerConfig.key] && "#cfcdd1",
+                        ...header.cellStyle
+                    }}>
+                        <span>{getValue(row, header)}</span>
+                    </TableCell>
+                ))}
+            </TableRow>
+        );
+    };
 };
+
+//'&:hover': {
+const useStyles = makeStyles({
+    rowWithoutClick:{
+        height: 39
+    },
+    rowWithClick:{
+        height: 39,
+        '&:hover': { backgroundColor: "red" },
+        cursor: "pointer"
+    }
+});
