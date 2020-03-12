@@ -39,11 +39,6 @@ body {
   max-width: 100px;
 }
 
-tr:hover td {
-  background-color: #fafaf9;
-
-}
-
 .grid-transition div {
   -webkit-transition: width 2s; /* Safari */
   transition: width 2s;

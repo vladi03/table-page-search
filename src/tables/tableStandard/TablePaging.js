@@ -73,25 +73,24 @@ TablePaging.propTypes = {
 export const tableRows = (headerConfig, onItemClick) => {
     const classes = useStyles();
     const [selectedRowId, setSelectedRowId ] = useState(null);
-    const [selectedRowIndex, setSelectedRowIndex ] = useState(-1);
+
     const getValue = (row, header) => header.display && header.display(row)
                                 || getObjectValue(row,header.fieldForSort);
 
-    const onSelectRow = (row, index)=> {
+    const onSelectRow = (row)=> {
         if(headerConfig.key)
             setSelectedRowId(row[headerConfig.key]);
-        setSelectedRowIndex(index);
         onItemClick(row)
     };
 
     return (row, index) => {
-        const hasClick = onItemClick && selectedRowIndex !== index;
+        const hasClick = !!onItemClick;
 
         /** @namespace header.cellStyle */
         return (
             <TableRow key={index}
                       className={hasClick ? classes.rowWithClick : classes.rowWithoutClick}
-                      onClick={() => hasClick ? onSelectRow(row, index) : undefined}>
+                      onClick={() => hasClick ? onSelectRow(row) : undefined}>
                 {headerConfig.columns.map((header, index) => (
                     <TableCell key={index} style={{
                         fontSize: 14,
@@ -114,7 +113,9 @@ const useStyles = makeStyles({
     },
     rowWithClick:{
         height: 39,
-        '&:hover': { backgroundColor: "red" },
+        '&:hover': {
+            backgroundColor: "#fafaf9"
+        },
         cursor: "pointer"
     }
 });
