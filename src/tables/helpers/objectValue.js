@@ -1,13 +1,15 @@
 
 export const getObjectValue = (targetObject, fieldName) => {
-    const childFields = fieldName.split('.');
-    //get to the property value by iterating through the object structure
-    let propValue = targetObject;
-    for (let index in childFields) {
-        // noinspection JSUnfilteredForInLoop
-        propValue = propValue[childFields[index]];
-    }
-    return propValue;
+    if(fieldName) {
+        const childFields = fieldName.split('.');
+        //get to the property value by iterating through the object structure
+        let propValue = targetObject;
+        for (let index in childFields) {
+            // noinspection JSUnfilteredForInLoop
+            propValue = propValue[childFields[index]];
+        }
+        return propValue;
+    } else return targetObject;
 };
 
 export const getObjectJoin = (targetObject) => {
