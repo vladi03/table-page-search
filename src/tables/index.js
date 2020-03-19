@@ -5,8 +5,10 @@ export {TableSkeletonPaging} from "./tableStandard/TableSkeletonPaging";
 
 export const headerConfig = {
     key: "id",
+    itemsPerPage: 0,
+    defaultSort: "lastName",
     columns: [
-        { fieldForSort: "id", columnLabel: "Id",
+        {  fieldForSort: "id", columnLabel: "Id",
             headerCellStyle:{width:80}, hideWhenCondensed: true
         },
         {
@@ -69,7 +71,7 @@ export class TableDemo extends React.Component {
 
                 <div style={{display:"flex"}}>
                     <h4 style={{marginLeft: 20}}>
-                        Table with paging and search
+                        Table with Paging and Search
                     </h4>
                     <TextField
                         label="Search"

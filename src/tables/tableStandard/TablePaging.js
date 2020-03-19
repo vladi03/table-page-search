@@ -7,11 +7,10 @@ import { TableHeaderSort } from "./TableHeaderSort";
 import {calcPage, sortItems} from "../helpers/pagingCalc";
 import {getObjectValue, getObjectJoin} from "../helpers/objectValue";
 
-
 export const TablePaging = ({loading, dataList, headerConfig, filterText, tableStyleName,
                                 searchFunction, onRowClick, condensed}) => {
-    const itemsPerPage = 10;
-    const [sortField, setSortField]= useState(headerConfig.columns[0].fieldForSort);
+    const itemsPerPage = headerConfig.itemsPerPage || 10;
+    const [sortField, setSortField]= useState(headerConfig.defaultSort || headerConfig.columns[0].fieldForSort);
     const [sortDescending, setSortDescending]= useState(false);
     const [activePage, setActivePage] = useState(1);
     const filterTextLower  = filterText && filterText.toLowerCase();
@@ -83,8 +82,8 @@ export const tableRows = (headerConfig, onItemClick) => {
             warningWasShown = true;
         }
 
-        return hasValue ? (header.display && header.display(row))
-            || (header.fieldForSort !== undefined && getObjectValue(row, header.fieldForSort))
+        return hasValue ? header.display ? header.display(row) :
+            (header.fieldForSort !== undefined && getObjectValue(row, header.fieldForSort))
             : "";
     };
 
