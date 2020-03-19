@@ -6,7 +6,7 @@ export {TableSkeletonPaging} from "./tableStandard/TableSkeletonPaging";
 export const headerConfig = {
     key: "id",
     itemsPerPage: 0,
-    defaultSort: "lastName",
+    defaultSort: "id",
     columns: [
         {  fieldForSort: "id", columnLabel: "Id",
             headerCellStyle:{width:80}, hideWhenCondensed: true
