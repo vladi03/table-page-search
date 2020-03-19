@@ -9,7 +9,9 @@ export const headerConfig = {
         { fieldForSort: "id", columnLabel: "Id",
             headerCellStyle:{width:80}, hideWhenCondensed: true
         },
-        { fieldForSort: "firstName", columnLabel: "Name First",
+        {
+            fieldForSort: "firstName",
+            columnLabel: "Name First",
             headerCellStyle:{width:120} },
         { fieldForSort: "lastName", columnLabel: "Name Last",
             headerCellStyle:{width:120}

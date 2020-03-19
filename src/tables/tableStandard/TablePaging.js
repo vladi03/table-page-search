@@ -73,9 +73,20 @@ TablePaging.propTypes = {
 export const tableRows = (headerConfig, onItemClick) => {
     const classes = useStyles();
     const [selectedRowId, setSelectedRowId ] = useState(null);
+    let warningWasShown = false;
 
-    const getValue = (row, header) => header.display && header.display(row)
-                                || getObjectValue(row,header.fieldForSort);
+    const getValue = (row, header) => {
+        const hasValue = !!(header.display || header.fieldForSort);
+
+        if(!(warningWasShown || hasValue)) {
+            console.warn(`Column "${header.columnLabel}" must have a "display" or "fieldSort" field`);
+            warningWasShown = true;
+        }
+
+        return hasValue ? (header.display && header.display(row))
+            || (header.fieldForSort !== undefined && getObjectValue(row, header.fieldForSort))
+            : "";
+    };
 
     const onSelectRow = (row)=> {
         if(headerConfig.key)
