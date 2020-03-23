@@ -8,8 +8,8 @@ export const getObjectValue = (targetObject, fieldName) => {
             // noinspection JSUnfilteredForInLoop
             propValue = propValue[childFields[index]];
         }
-        return propValue;
-    } else return targetObject;
+        return propValue === undefined || propValue === null ? "" : propValue;
+    } else return targetObject === undefined || targetObject === null ? "" : targetObject;
 };
 
 export const getObjectJoin = (targetObject) => {
