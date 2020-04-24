@@ -11,7 +11,7 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
                                 searchFunction, onRowClick, condensed}) => {
     const itemsPerPage = headerConfig.itemsPerPage || 10;
     const [sortField, setSortField]= useState(headerConfig.defaultSort || headerConfig.columns[0].fieldForSort);
-    const [sortDescending, setSortDescending]= useState(false);
+    const [sortDescending, setSortDescending]= useState(headerConfig.sortDescending || false);
     const [activePage, setActivePage] = useState(1);
     const filterTextLower  = filterText && filterText.toLowerCase();
 

@@ -22,13 +22,14 @@ Each column of the config should have a "fieldSort" or "display" field in order 
 "fieldSort" - (Optional if "display" has value) sorting and is used for the cell value if "display" is not provided
 
 "defaultSort" - (Optional) sort field when table is first rendered.  if not provided the first column is used.
-
+"sortDescending" = (Optional) sort in descending order when true as a default. if not provided it is false.
 
 ``` javascript
 const headerConfig = {
     key: "id",
     itemsPerPage: 8,
-    defaultSort: "lastName"
+    defaultSort: "lastName",
+    sortDescending: true,
     columns: [
         { fieldForSort: "firstName", columnLabel: "Name First", headerCellStyle:{width:80} },
         { fieldForSort: "lastName", columnLabel: "Name Last" },
