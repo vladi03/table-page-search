@@ -33,7 +33,7 @@ describe('Demo Table Load', () => {
         assert.strictEqual(getCellValue(0,2),"Shepherd");
         assert.strictEqual(getCellValue(0,3),"Catherine");
         assert.strictEqual(getCellValue(0,4),"Shepherd, Amie");
-        assert.strictEqual(getCellValue(9,1),"Cassandra");
+        assert.strictEqual(getCellValue(9,1),"Lacy");
     });
 
     it("sort table", ()=> {
