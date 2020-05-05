@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import PropTypes from 'prop-types';
 import {SpinnerDownloading} from "../extras/SpinnerDownloading";
 import {TableSkeletonPaging} from "./TableSkeletonPaging";
@@ -8,12 +8,19 @@ import {calcPage, sortItems} from "../helpers/pagingCalc";
 import {getObjectValue, getObjectJoin} from "../helpers/objectValue";
 
 export const TablePaging = ({loading, dataList, headerConfig, filterText, tableStyleName,
-                                searchFunction, onRowClick, condensed}) => {
+                                searchFunction, onRowClick, condensed, onServerSidePaging,
+                                totalRecordsFromServer, restPageNumber
+                            }) => {
     const itemsPerPage = headerConfig.itemsPerPage || 10;
     const [sortField, setSortField]= useState(headerConfig.defaultSort || headerConfig.columns[0].fieldForSort);
     const [sortDescending, setSortDescending]= useState(headerConfig.sortDescending || false);
     const [activePage, setActivePage] = useState(1);
     const filterTextLower  = filterText && filterText.toLowerCase();
+
+    useEffect(() => {
+        if(restPageNumber > 0)
+            setActivePage(restPageNumber);
+    }, [restPageNumber]);
 
     let filteredList = [];
     if(filterText && filterText.length > 0) {
@@ -24,19 +31,35 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
         filteredList = [...dataList];
     }
 
+
     const onSetSortField = (newSortField) => {
         const isDescending = newSortField === sortField && !sortDescending;
         setSortDescending(isDescending);
         setSortField(newSortField);
+        if(onServerSidePaging)
+            onServerSidePaging({
+                sortField: newSortField,
+                sortDescending: isDescending,
+                itemsPerPage, activePage
+            });
     };
 
     const onPageChange = (newPage) => {
         setActivePage(newPage);
+        if(onServerSidePaging)
+            onServerSidePaging({
+                sortField,
+                sortDescending,
+                itemsPerPage,
+                activePage : newPage
+            });
     };
 
-    sortItems(filteredList, sortField, sortDescending);
-    const paging = calcPage(filteredList, itemsPerPage, activePage);
-
+    if(!onServerSidePaging)
+        sortItems(filteredList, sortField, sortDescending);
+    const paging = calcPage(filteredList, itemsPerPage, activePage, totalRecordsFromServer);
+    console.log("currentPageNum");
+    console.log(paging.currentPageNum);
     const tableHeader =(
         <TableHeaderSort headerConfig={headerConfig}
                          sortField={sortField}

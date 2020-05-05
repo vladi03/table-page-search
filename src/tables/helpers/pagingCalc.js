@@ -1,6 +1,6 @@
 import {getObjectValue} from "./objectValue";
 
-export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, ) => {
+export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, totalRecordFromServer) => {
     const result = {
         rows: [],
         pageList: [],
@@ -17,12 +17,15 @@ export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, ) => {
 
     try {
         const pagesToShow = 4;
-        const calcTotalPages = Math.ceil(allRows.length / itemsPerPage);
+        const calcTotalPages = totalRecordFromServer ?
+            Math.ceil(totalRecordFromServer / itemsPerPage)  :
+            Math.ceil(allRows.length / itemsPerPage);
+
         for(let pageAllIndex = 1; pageAllIndex <= calcTotalPages; pageAllIndex++)
             result.allPages.push(pageAllIndex);
 
         result.hasPaging = calcTotalPages > 1;
-        const currentPageNum = currentPageNumOrLast === true ? calcLastPageNumber(allRows.length, itemsPerPage) : currentPageNumOrLast;
+        const currentPageNum = currentPageNumOrLast === true ? calcTotalPages : currentPageNumOrLast;
         result.currentPageNum = currentPageNum;
         let startPage = currentPageNum > 2 ? currentPageNum - 1 : 1;
 
@@ -50,7 +53,8 @@ export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, ) => {
         const endItemIndex = (calcIndexStart + itemsPerPage) < allRows.length ? (calcIndexStart + itemsPerPage) : allRows.length;
         result.pagingMessage = allRows.length > 0 ? `${calcIndexStart + 1}-${endItemIndex} of ${allRows.length}`: "No Data";
 
-        result.rows = allRows.slice(calcIndexStart, endItemIndex);
+
+        result.rows = totalRecordFromServer ? allRows : allRows.slice(calcIndexStart, endItemIndex);
         result.showPrevButton = result.currentPageNum > 1;
         result.showNextButton = result.currentPageNum < calcTotalPages;
     } catch (ex) {
@@ -61,10 +65,6 @@ export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, ) => {
         result.currentPageNum = 0;
     }
     return result;
-};
-
-export const calcLastPageNumber = (rowCount, itemsPerPage) => {
-    return Math.ceil(rowCount / itemsPerPage);
 };
 
 export const sortItems = (itemList, sortField, isDescending) => {
