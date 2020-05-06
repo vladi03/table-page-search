@@ -58,8 +58,7 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
     if(!onServerSidePaging)
         sortItems(filteredList, sortField, sortDescending);
     const paging = calcPage(filteredList, itemsPerPage, activePage, totalRecordsFromServer);
-    console.log("currentPageNum");
-    console.log(paging.currentPageNum);
+
     const tableHeader =(
         <TableHeaderSort headerConfig={headerConfig}
                          sortField={sortField}

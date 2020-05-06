@@ -51,8 +51,9 @@ export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, totalReco
         }
 
         const endItemIndex = (calcIndexStart + itemsPerPage) < allRows.length ? (calcIndexStart + itemsPerPage) : allRows.length;
-        result.pagingMessage = allRows.length > 0 ? `${calcIndexStart + 1}-${endItemIndex} of ${allRows.length}`: "No Data";
-
+        result.pagingMessage = totalRecordFromServer > 0 || allRows.length > 0 ?
+            `${calcIndexStart + 1}-${endItemIndex} of ${totalRecordFromServer || allRows.length}`
+            : "No Data";
 
         result.rows = totalRecordFromServer ? allRows : allRows.slice(calcIndexStart, endItemIndex);
         result.showPrevButton = result.currentPageNum > 1;
