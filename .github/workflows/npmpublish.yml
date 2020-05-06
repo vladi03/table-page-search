@@ -20,7 +20,6 @@ jobs:
       - run: npm test
       - run: npm install -g nwb
       - run: npm run build:local
-      - run: npm run deploy:docs
       - name: deploy docs
         uses: ./
         with:
