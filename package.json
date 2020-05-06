@@ -15,7 +15,6 @@
     "start": "nwb serve-react-app --copy-files",
     "prepair": "npm-run-all build",
     "deploy:docs": "gh-pages -d dist",
-    "deploy:docshelp": "gh-pages --help",
     "sendToNpm": "npm publish",
     "deployComponent": "npm-run-all test version:patch build build:local sendToNpm deploy:docs"
   },
