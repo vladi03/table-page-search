@@ -17,9 +17,8 @@ export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, totalReco
 
     try {
         const pagesToShow = 4;
-        const calcTotalPages = totalRecordFromServer ?
-            Math.ceil(totalRecordFromServer / itemsPerPage)  :
-            Math.ceil(allRows.length / itemsPerPage);
+        const calcTotalRecordCount = totalRecordFromServer || allRows.length;
+        const calcTotalPages = Math.ceil(calcTotalRecordCount / itemsPerPage);
 
         for(let pageAllIndex = 1; pageAllIndex <= calcTotalPages; pageAllIndex++)
             result.allPages.push(pageAllIndex);
@@ -40,7 +39,7 @@ export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, totalReco
 
         let endPage = (startPage + pagesToShow - 1) < calcTotalPages ? startPage + pagesToShow - 1 : calcTotalPages;
         //check to make sure we have the correct number of pages showing.
-        if((endPage - startPage) < pagesToShow -1 && allRows.length > 0 && endPage >= pagesToShow) {
+        if((endPage - startPage) < pagesToShow -1 && calcTotalRecordCount > 0 && endPage >= pagesToShow) {
             startPage = endPage - pagesToShow + 1;
         }
 
@@ -50,9 +49,9 @@ export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, totalReco
             result.pageList.push(pageIndex);
         }
 
-        const endItemIndex = (calcIndexStart + itemsPerPage) < allRows.length ? (calcIndexStart + itemsPerPage) : allRows.length;
-        result.pagingMessage = totalRecordFromServer > 0 || allRows.length > 0 ?
-            `${calcIndexStart + 1}-${endItemIndex} of ${totalRecordFromServer || allRows.length}`
+        const endItemIndex = (calcIndexStart + itemsPerPage) < calcTotalRecordCount ? (calcIndexStart + itemsPerPage) : calcTotalRecordCount;
+        result.pagingMessage = totalRecordFromServer > 0 || calcTotalRecordCount > 0 ?
+            `${calcIndexStart + 1}-${endItemIndex} of ${calcTotalRecordCount}`
             : "No Data";
 
         result.rows = totalRecordFromServer ? allRows : allRows.slice(calcIndexStart, endItemIndex);
