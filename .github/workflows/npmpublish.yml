@@ -21,3 +21,10 @@ jobs:
       - run: npm install -g nwb
       - run: npm run build:local
       - run: npm run deploy:docs
+      - name: deploy docs
+        uses: ./
+        with:
+          username: ${{ secrets.USER_NAME }}
+          password: ${{ secrets.USER_TOKEN }}
+          remote_url: https://github.com/appleboy/gh-pages-action.git
+          target_directory: dist
