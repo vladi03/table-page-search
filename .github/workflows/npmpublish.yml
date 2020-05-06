@@ -4,8 +4,9 @@
 name: Node.js Send Docs
 
 on:
-  release:
-    types: [created]
+  push:
+    branches:
+      - master
 
 jobs:
   build:
@@ -17,17 +18,6 @@ jobs:
           node-version: 12
       - run: npm ci
       - run: npm test
-
-  publish-gh-pages:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 12
-          registry-url: https://npm.pkg.github.com/
-      - run: npm ci
       - run: npm install -g nwb
       - run: npm run build:local
       - run: npm run deploy:docs
