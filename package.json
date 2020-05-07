@@ -1,7 +1,7 @@
 {
   "name": "table-page-search",
   "_": "[bump]",
-  "version": "0.8.8",
+  "version": "0.8.9",
   "description": "material-ui table with opinionated styling",
   "main": "./lib/index.js",
   "files": [
@@ -18,7 +18,7 @@
     "deploy:docs": "gh-pages -d dist",
     "sendToNpm": "npm publish",
     "postversion": "git push",
-    "postTag" : "git push --tags",
+    "postTag": "git push --tags",
     "deployComponent": "npm-run-all test version:patch build build:local sendToNpm deploy:docs",
     "push": "npm-run-all version:patch postversion postTag"
   },
