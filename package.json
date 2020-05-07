@@ -20,7 +20,7 @@
     "postversion": "git push",
     "postTag": "git push --tags",
     "deployComponent": "npm-run-all test version:patch build build:local sendToNpm deploy:docs",
-    "push": "npm-run-all version:patch postversion postTag"
+    "push": "npm-run-all postversion postTag"
   },
   "repository": {
     "type": "git",
