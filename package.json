@@ -17,7 +17,9 @@
     "prepair": "npm-run-all build",
     "deploy:docs": "gh-pages -d dist",
     "sendToNpm": "npm publish",
-    "deployComponent": "npm-run-all test version:patch build build:local sendToNpm deploy:docs"
+    "postversion": "git push && git push --tags",
+    "deployComponent": "npm-run-all test version:patch build build:local sendToNpm deploy:docs",
+    "push": "npm-run-all version:patch postversion"
   },
   "repository": {
     "type": "git",
