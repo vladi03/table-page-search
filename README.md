@@ -46,7 +46,7 @@ const users = [
         "id": 0,
         "firstName": "Cassandra",
         "lastName": "Andrews",
-        "location": { "city" : "Dotsero" }
+        "location": { "city" : "Dotseron" }
     },
     {
         "id": 1,
