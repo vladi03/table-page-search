@@ -10,7 +10,7 @@
   "scripts": {
     "build:local": "nwb build-react-app --copy-files",
     "build": "cross-env NODE_ENV=production babel ./src/tables --out-dir ./lib ",
-    "version:patch": "npm version patch",
+    "version": "npm version patch",
     "version:minor": "npm version minor",
     "test": "mocha ./unit_test/.setup.js --require @babel/register --recursive ./unit_test",
     "start": "nwb serve-react-app --copy-files",
