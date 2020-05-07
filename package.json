@@ -1,7 +1,7 @@
 {
   "name": "table-page-search",
   "_": "[bump]",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "description": "material-ui table with opinionated styling",
   "main": "./lib/index.js",
   "files": [
@@ -10,7 +10,7 @@
   "scripts": {
     "build:local": "nwb build-react-app --copy-files",
     "build": "cross-env NODE_ENV=production babel ./src/tables --out-dir ./lib ",
-    "version": "npm version patch",
+    "version:patch": "npm version patch",
     "version:minor": "npm version minor",
     "test": "mocha ./unit_test/.setup.js --require @babel/register --recursive ./unit_test",
     "start": "nwb serve-react-app --copy-files",
