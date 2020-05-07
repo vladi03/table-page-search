@@ -68,8 +68,20 @@ const users = [
 
 "tableStyleName" = (Optional) string name for the class of the table object
 
+
+```javascript
+  <TablePaging  loading={loading}
+                dataList={users}
+                headerConfig={headerConfig}
+                filterText={filterText}
+  />
+```
+## Server Side Paging
+
 When server side paging is needed the following options can be used.  For server side paging, the "dataList" should
 have the same number of records or less than the "itemsPerPage" of the "headerConfig" object.
+
+---
 
 "totalRecordsFromServer" = since the dataList only has one page of data, the total number of records is needed
 to render the page buttons and display total record count to the user.
@@ -79,11 +91,3 @@ to render the page buttons and display total record count to the user.
 
  "restPageNumber" = this value is ignored if less than zero and should be a number between 1 and the number of
  pages.  When the value is greater than zero, the page number will be set active for the page buttons
-
-```javascript
-  <TablePaging  loading={loading}
-                dataList={users}
-                headerConfig={headerConfig}
-                filterText={filterText}
-  />
-```
