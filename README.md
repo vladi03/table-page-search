@@ -52,7 +52,7 @@ const users = [
         "id": 1,
         "firstName": "Lakisha",
         "lastName": "Alvarez",
-        "location": { "city" :  "Winfreds" }
+        "location": { "city" :  "Winfred" }
     }
 ];
 ```
