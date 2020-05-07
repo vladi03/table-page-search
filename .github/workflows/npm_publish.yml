@@ -21,9 +21,9 @@ jobs:
       - name: Bump version
         uses: remorses/bump-version@js
         with:
-            version_file: ./VERSION
-            github_token: ${{ secrets.USER_TOKEN }}
-            branch: master
+            version_file: VERSION
+        env:
+            GITHUB_TOKEN: ${{ secrets.USER_TOKEN }}
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
