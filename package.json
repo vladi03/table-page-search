@@ -1,5 +1,6 @@
 {
   "name": "table-page-search",
+  "_": "[bump]",
   "version": "0.8.5",
   "description": "material-ui table with opinionated styling",
   "main": "./lib/index.js",
