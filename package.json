@@ -1,7 +1,7 @@
 {
   "name": "table-page-search",
   "_": "[bump]",
-  "version": "0.9.6",
+  "version": "0.9.7",
   "description": "material-ui table with opinionated styling",
   "main": "./lib/index.js",
   "files": [
@@ -52,7 +52,7 @@
     "gh-pages": "^2.1.1",
     "jsdom": "14.0.0",
     "jsdom-global": "3.0.2",
-    "mocha": "^6.2.1",
+    "mocha": "^7.1.2",
     "npm-run-all": "^4.1.5",
     "react": "^16.10.2",
     "react-dom": "^16.10.2"
