@@ -2,7 +2,10 @@ import React, {useState, useEffect} from "react";
 import PropTypes from 'prop-types';
 import {SpinnerDownloading} from "../extras/SpinnerDownloading";
 import {TableSkeletonPaging} from "./TableSkeletonPaging";
-import {TableRow ,TableCell, makeStyles} from "@material-ui/core";
+import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
+import {makeStyles} from "@material-ui/core/styles";
+
 import { TableHeaderSort } from "./TableHeaderSort";
 import {calcPage, sortItems} from "../helpers/pagingCalc";
 import {getObjectValue, getObjectJoin} from "../helpers/objectValue";

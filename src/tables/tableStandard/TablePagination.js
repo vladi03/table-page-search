@@ -1,6 +1,13 @@
 import React from "react";
-import { Typography, IconButton,FormControl, Select} from '@material-ui/core';
-import { ChevronLeft,FirstPage, ChevronRight, LastPage } from '@material-ui/icons';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import ChevronLeft from '@material-ui/icons/ChevronLeft';
+import FirstPage from '@material-ui/icons/FirstPage';
+import ChevronRight from '@material-ui/icons/ChevronRight';
+import LastPage from '@material-ui/icons/LastPage';
+
 import { useStyles } from "./PaginationStype";
 
 export const TablePagination = (

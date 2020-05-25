@@ -1,6 +1,9 @@
 import React from "react";
-import { Chip, Avatar, ListItem, ListItemText } from "@material-ui/core";
-import { LibraryBooks } from "@material-ui/icons";
+import Chip from "@material-ui/core/Chip";
+import Avatar from "@material-ui/core/Avatar";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import LibraryBooks from "@material-ui/icons/LibraryBooks";
 
 // noinspection JSUnusedGlobalSymbols
 export const NoData = ({dataCount, children})=> (

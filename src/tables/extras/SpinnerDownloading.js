@@ -1,6 +1,6 @@
 import React from 'react';
-import { CircularProgress } from '@material-ui/core';
-import {  PlayForWork as LoadingIcon} from '@material-ui/icons';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LoadingIcon from '@material-ui/icons/PlayForWork';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles  = (spinnerSize) => makeStyles({

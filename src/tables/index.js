@@ -1,5 +1,8 @@
 import React from "react";
-import {TextField, FormControlLabel, Checkbox} from "@material-ui/core"
+import TextField from "@material-ui/core/TextField"
+import FormControlLabel from "@material-ui/core/FormControlLabel"
+import Checkbox from "@material-ui/core/Checkbox"
+
 import {TablePaging} from "./tableStandard/TablePaging";
 export {TableSkeletonPaging} from "./tableStandard/TableSkeletonPaging";
 

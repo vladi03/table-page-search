@@ -1,5 +1,9 @@
 import React from "react";
-import { Table, TableBody, TableRow, TableCell } from '@material-ui/core';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
+
 import { TablePagination } from "./TablePagination";
 import {ListNoData} from "../extras/NoData";
 

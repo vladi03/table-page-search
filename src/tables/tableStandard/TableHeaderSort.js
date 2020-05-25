@@ -1,5 +1,9 @@
 import React from "react";
-import { TableHead, TableRow, TableCell, TableSortLabel } from '@material-ui/core';
+
+import TableHead from '@material-ui/core/TableHead';
+import TableCell from '@material-ui/core/TableCell';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
+import TableRow from '@material-ui/core/TableRow';
 
 export const TableHeaderSort = ({headerConfig, sortField, sortDescending, onSetSortField})=>(
     <TableHead>
