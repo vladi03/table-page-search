@@ -22,7 +22,8 @@ Each column of the config should have a "fieldSort" or "display" field in order 
 "fieldSort" - (Optional if "display" has value) sorting and is used for the cell value if "display" is not provided
 
 "defaultSort" - (Optional) sort field when table is first rendered.  if not provided the first column is used.
-"sortDescending" = (Optional) sort in descending order when true as a default. if not provided it is false.
+
+"sortDescending" = (Optional) default sort in descending order when table is first rendered when true as a default. if not provided it is false.
 
 ``` javascript
 const headerConfig = {
@@ -58,6 +59,16 @@ const users = [
 ```
 
 # Sample Component Use
+
+"loading" = (Optional) when set to true the table is replaced with a spinner
+
+"dataList" = data list to display in the table
+
+"onRowClick" = (Optional) called when user clicks on a row of the table
+
+"tableStyleName" = (Optional) string name for the class of the table object
+
+
 ```javascript
   <TablePaging  loading={loading}
                 dataList={users}
@@ -65,3 +76,18 @@ const users = [
                 filterText={filterText}
   />
 ```
+## Server Side Paging
+
+When server side paging is needed the following options can be used.  For server side paging, the "dataList" should
+have the same number of records or less than the "itemsPerPage" of the "headerConfig" object.
+
+---
+
+"totalRecordsFromServer" = since the dataList only has one page of data, the total number of records is needed
+to render the page buttons and display total record count to the user.
+
+"onServerSidePaging" = This is call any time a sort or page change happens.  The fields that are provider are :
+ {sortField, sortDescending, activePage}.
+
+ "restPageNumber" = this value is ignored if less than zero and should be a number between 1 and the number of
+ pages.  When the value is greater than zero, the page number will be set active for the page buttons
