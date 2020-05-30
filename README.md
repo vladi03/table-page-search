@@ -13,18 +13,24 @@ The following example shows a table with all the functionality:
 # Sample Header Config
 Each column of the config should have a "fieldSort" or "display" field in order to show data in the cell.
 
-"key" - (Optional) used to highlight the row if selected.
+|field|Description|
+| :---: | :--- |
+|"key"| (Optional) used to highlight the row if selected.|
+|"itemsPerPage"| (Optional) defaults to 10|
+|"display"|(Optional if "fieldSort" has value) function to calculate a node for table cell.
 
-"itemsPerPage" - (Optional) defaults to 10
+  "onRowClick" will not be fired for cells that use this option
 
-"display" - (Optional if "fieldSort" has value) function to calculate a node for table cell.  "onRowClick" will not be fired
-for cells that use this option but the "onRowClick" is passed as a parameter.
+   but the "onRowClick" is passed as a parameter.|
+|"fieldSort"|(Optional if "display" has value) sorting and is used for the cell value
 
-"fieldSort" - (Optional if "display" has value) sorting and is used for the cell value if "display" is not provided
+if "display" is not provided|
+|"defaultSort"|(Optional) sort field when table is first rendered.
 
-"defaultSort" - (Optional) sort field when table is first rendered.  if not provided the first column is used.
+if not provided the first column is used.|
+|"sortDescending"|(Optional) default sort in descending order when table is
 
-"sortDescending" = (Optional) default sort in descending order when table is first rendered when true as a default. if not provided it is false.
+first rendered when true as a default. if not provided it is false.|
 
 ``` javascript
 const headerConfig = {
