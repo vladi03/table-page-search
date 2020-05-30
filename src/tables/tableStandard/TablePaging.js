@@ -99,7 +99,7 @@ export const tableRows = (headerConfig, onItemClick) => {
     const [selectedRowId, setSelectedRowId ] = useState(null);
     let warningWasShown = false;
 
-    const getValue = (row, header) => {
+    const getValue = (row, header, onSelectRow) => {
         const hasValue = !!(header.display || header.fieldForSort);
 
         if(!(warningWasShown || hasValue)) {
@@ -107,7 +107,7 @@ export const tableRows = (headerConfig, onItemClick) => {
             warningWasShown = true;
         }
 
-        return hasValue ? header.display ? header.display(row) :
+        return hasValue ? header.display ? header.display(row, header, onSelectRow) :
             (header.fieldForSort !== undefined && getObjectValue(row, header.fieldForSort))
             : "";
     };
@@ -125,15 +125,19 @@ export const tableRows = (headerConfig, onItemClick) => {
         return (
             <TableRow key={index}
                       className={hasClick ? classes.rowWithClick : classes.rowWithoutClick}
-                      onClick={() => hasClick ? onSelectRow(row) : undefined}>
+                      >
                 {headerConfig.columns.map((header, index) => (
-                    <TableCell key={index} style={{
-                        fontSize: 14,
-                        backgroundColor: selectedRowId !== null && headerConfig.key &&
-                        selectedRowId === row[headerConfig.key] && "#cfcdd1",
-                        ...header.cellStyle
-                    }}>
-                        <span>{getValue(row, header)}</span>
+                    <TableCell key={index}
+                               onClick={() => hasClick && !header.display ? onSelectRow(row) : undefined}
+                               className={hasClick && !header.display ? classes.cellWithClick : null}
+                               style={{
+                                        fontSize: 14,
+                                        backgroundColor: selectedRowId !== null && headerConfig.key &&
+                                        selectedRowId === row[headerConfig.key] && "#cfcdd1",
+                                        ...header.cellStyle
+                                    }}
+                    >
+                        <span>{getValue(row, header, onSelectRow)}</span>
                     </TableCell>
                 ))}
             </TableRow>
@@ -150,7 +154,9 @@ const useStyles = makeStyles({
         height: 39,
         '&:hover': {
             backgroundColor: "#fafaf9"
-        },
+        }
+    },
+    cellWithClick: {
         cursor: "pointer"
     }
 });
