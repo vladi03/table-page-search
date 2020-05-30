@@ -17,7 +17,8 @@ Each column of the config should have a "fieldSort" or "display" field in order 
 
 "itemsPerPage" - (Optional) defaults to 10
 
-"display" - (Optional if "fieldSort" has value) function to calculate a node
+"display" - (Optional if "fieldSort" has value) function to calculate a node for table cell.  "onRowClick" will not be fired
+for cells that use this option but the "onRowClick" is passed as a parameter.
 
 "fieldSort" - (Optional if "display" has value) sorting and is used for the cell value if "display" is not provided
 
@@ -36,7 +37,7 @@ const headerConfig = {
         { fieldForSort: "lastName", columnLabel: "Name Last" },
         { fieldForSort: "location.city", columnLabel: "Location" },
         {
-            display: (row)=> `${row.lastName}, ${row.firstName}`,
+            display: (row, columnConfig, onRowClick)=> `${row.lastName}, ${row.firstName}`,
             columnLabel: "Full Name"
         }
     ]
