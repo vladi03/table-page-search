@@ -54,6 +54,7 @@ export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, totalReco
             `${calcIndexStart + 1}-${endItemIndex} of ${calcTotalRecordCount}`
             : "No Data";
         result.totalRows = calcTotalRecordCount;
+        result.itemsPerPage = itemsPerPage;
         result.rows = totalRecordFromServer ? allRows : allRows.slice(calcIndexStart, endItemIndex);
         result.showPrevButton = result.currentPageNum > 1;
         result.showNextButton = result.currentPageNum < calcTotalPages;
