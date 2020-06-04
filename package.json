@@ -1,7 +1,7 @@
 {
   "name": "table-page-search",
   "_": "[bump]",
-  "version": "0.11.4",
+  "version": "0.12.0",
   "description": "material-ui table with opinionated styling",
   "main": "./lib/index.js",
   "files": [
