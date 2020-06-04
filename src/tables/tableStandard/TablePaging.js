@@ -12,9 +12,9 @@ import {getObjectValue, getObjectJoin} from "../helpers/objectValue";
 
 export const TablePaging = ({loading, dataList, headerConfig, filterText, tableStyleName,
                                 searchFunction, onRowClick, condensed, onServerSidePaging,
-                                totalRecordsFromServer, restPageNumber
+                                totalRecordsFromServer, restPageNumber, useMaterialUiPaging
                             }) => {
-    const itemsPerPage = headerConfig.itemsPerPage || 10;
+    const [itemsPerPage, setItemsPerPage] = useState(headerConfig.itemsPerPage || 10);
     const [sortField, setSortField]= useState(headerConfig.defaultSort || headerConfig.columns[0].fieldForSort);
     const [sortDescending, setSortDescending]= useState(headerConfig.sortDescending || false);
     const [activePage, setActivePage] = useState(1);
@@ -47,8 +47,11 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
             });
     };
 
-    const onPageChange = (newPage) => {
+    const onPageChange = (newPage, newItemsPerPage) => {
         setActivePage(newPage);
+        if(newItemsPerPage > 0)
+            setItemsPerPage(newItemsPerPage);
+
         if(onServerSidePaging)
             onServerSidePaging({
                 sortField,
@@ -78,6 +81,7 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
                 condensed={condensed}
                 onPageChange={onPageChange}
                 tableStyleName={tableStyleName}
+                useMaterialUiPaging={useMaterialUiPaging  || false}
             />
         </SpinnerDownloading>
     )

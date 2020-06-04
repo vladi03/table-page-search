@@ -103,6 +103,7 @@ export class TableDemo extends React.Component {
                              filterText={filterText}
                              tableStyleName={removeStyling ? "" : "stripe-table"}
                              onRowClick = {(user) => this.handleRowClick(user)}
+                             useMaterialUiPaging={true}
                              //searchFunction={(dataList) => this.searchName(dataList)}
                 />
             </React.Fragment>

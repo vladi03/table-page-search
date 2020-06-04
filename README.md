@@ -63,13 +63,14 @@ const users = [
 |"dataList"|data list to display in the table|
 |"onRowClick"|(Optional) called when user clicks on a row of the table|
 |"tableStyleName"|(Optional) string name for the class of the table object|
-
+|"useMaterialUiPaging"|(Optional) bool use the standard material ui table paging|
 
 ```javascript
   <TablePaging  loading={loading}
                 dataList={users}
                 headerConfig={headerConfig}
                 filterText={filterText}
+                useMaterialUiPaging={true}
   />
 ```
 ## Server Side Paging
