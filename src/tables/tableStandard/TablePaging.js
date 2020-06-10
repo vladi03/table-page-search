@@ -132,8 +132,8 @@ export const tableRows = (headerConfig, onItemClick) => {
                       >
                 {headerConfig.columns.map((header, index) => (
                     <TableCell key={index}
-                               onClick={() => hasClick && !header.display ? onSelectRow(row) : undefined}
-                               className={hasClick && !header.display ? classes.cellWithClick : null}
+                               onClick={() => hasClick && !header.disableCellClick ? onSelectRow(row) : undefined}
+                               className={hasClick && !header.disableCellClick ? classes.cellWithClick : null}
                                style={{
                                         fontSize: 14,
                                         backgroundColor: selectedRowId !== null && headerConfig.key &&

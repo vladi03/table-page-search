@@ -17,7 +17,9 @@ export const headerConfig = {
         {
             fieldForSort: "firstName",
             columnLabel: "Name First",
-            headerCellStyle:{width:120} },
+            headerCellStyle:{width:120},
+            disableCellClick: true
+        },
         { fieldForSort: "lastName", columnLabel: "Name Last",
             headerCellStyle:{width:120}
         },

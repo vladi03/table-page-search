@@ -21,6 +21,7 @@ Each column of the config should have a "fieldSort" or "display" field in order 
 |"fieldSort"|(Optional if "display" has value) sorting and is used for the cell value if "display" is not provided|
 |"defaultSort"|(Optional) sort field when table is first rendered. if not provided the first column is used.|
 |"sortDescending"|(Optional) default sort in descending order when table is first rendered when true as a default. if not provided it is false.|
+|"disableCellClick"|(Optional) disable the cell click.  This is helpful for inline editing in the table.|
 
 
 ``` javascript
@@ -31,7 +32,7 @@ const headerConfig = {
     sortDescending: true,
     columns: [
         { fieldForSort: "firstName", columnLabel: "Name First", headerCellStyle:{width:80} },
-        { fieldForSort: "lastName", columnLabel: "Name Last" },
+        { fieldForSort: "lastName", columnLabel: "Name Last", disableCellClick: true },
         { fieldForSort: "location.city", columnLabel: "Location" },
         {
             display: (row, columnConfig, onRowClick)=> `${row.lastName}, ${row.firstName}`,
