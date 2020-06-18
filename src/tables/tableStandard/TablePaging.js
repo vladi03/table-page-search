@@ -14,7 +14,8 @@ export const TablePaging = ({loading, dataList, headerConfig, filterText, tableS
                                 searchFunction, onRowClick, condensed, onServerSidePaging,
                                 totalRecordsFromServer, restPageNumber, useMaterialUiPaging
                             }) => {
-    const [itemsPerPage, setItemsPerPage] = useState(headerConfig.itemsPerPage || 10);
+    const roundToNearest5 = Math.round((headerConfig.itemsPerPage || 10)/5)*5;
+    const [itemsPerPage, setItemsPerPage] = useState(roundToNearest5);
     const [sortField, setSortField]= useState(headerConfig.defaultSort || headerConfig.columns[0].fieldForSort);
     const [sortDescending, setSortDescending]= useState(headerConfig.sortDescending || false);
     const [activePage, setActivePage] = useState(1);

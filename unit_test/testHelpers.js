@@ -1,5 +1,6 @@
 import assert from "assert";
 import {getObjectValue, getObjectJoin} from "../src/tables/helpers/objectValue";
+import {findNearest} from "../src/tables/helpers/pagingCalc";
 
 const testObject = {
     firstName:"jim",
@@ -48,5 +49,40 @@ describe("get join from object", () =>{
     it("pass null", () => {
         const result = getObjectJoin(null);
         assert.strictEqual(result, "");
+    });
+});
+
+describe("find nearest",()=> {
+   it("number in range", ()=>{
+       let value = findNearest([5,10,25], 15);
+       assert.strictEqual(value,10, "nearest is ten");
+
+       value = findNearest([5,10,30], 20);
+       assert.strictEqual(value,10, "nearest is ten with 10 and 30");
+
+       value = findNearest([5,10,30], 1);
+       assert.strictEqual(value,5, "nearest is 5");
+   });
+
+    it("number out of range", ()=>{
+        let value = findNearest([5,10,25], 30);
+        assert.strictEqual(value,25, "nearest is 25");
+
+        value = findNearest([5,10,30], -20);
+        assert.strictEqual(value,5, "nearest is 5");
+
+        value = findNearest([5,10,30], 0);
+        assert.strictEqual(value,5, "nearest is 5 with zero target");
+    });
+
+    it("not numbers", ()=>{
+        let value = findNearest([5,10,25], null);
+        assert.strictEqual(value,5, "nearest is 5");
+
+        value = findNearest([5,10,30], undefined);
+        assert.strictEqual(value,5, "nearest is 5 of undefined");
+
+        value = findNearest([5,10,30], "test");
+        assert.strictEqual(value,5, "nearest is 5 of string");
     });
 });

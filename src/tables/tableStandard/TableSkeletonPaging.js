@@ -27,7 +27,7 @@ export const TableSkeletonPaging = ({tableHeader, tableRows, paging, tableStyleN
 
             {useMaterialUiPaging ?
                 <Pagination
-                    rowsPerPageOptions={[5, 10, 25]}
+                    rowsPerPageOptions={paging.rowsPerPageOptions}
                     component="div"
                     rowsPerPage={paging.itemsPerPage}
                     page={paging.currentPageNum - 1}

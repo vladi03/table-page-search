@@ -8,7 +8,7 @@ export {TableSkeletonPaging} from "./tableStandard/TableSkeletonPaging";
 
 export const headerConfig = {
     key: "id",
-    itemsPerPage: 0,
+    itemsPerPage: 8,
     defaultSort: "firstName",
     columns: [
         {  fieldForSort: "id", columnLabel: "Id",

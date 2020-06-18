@@ -1,10 +1,11 @@
 import {getObjectValue} from "./objectValue";
 
-export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, totalRecordFromServer) => {
+export const calcPage = (allRows,  itemsPerPageSetting, currentPageNumOrLast, totalRecordFromServer) => {
     const result = {
         rows: [],
         pageList: [],
         allPages: [],
+        rowsPerPageOptions: [5,10,20,40],
         pagingMessage: "No Records",
         hasError: false,
         errorMessage: "",
@@ -14,6 +15,7 @@ export const calcPage = (allRows,  itemsPerPage, currentPageNumOrLast, totalReco
         showNextButton: true,
         currentPageNum: currentPageNumOrLast
     };
+    const itemsPerPage = findNearest(result.rowsPerPageOptions, itemsPerPageSetting);
 
     try {
         const pagesToShow = 4;
@@ -89,3 +91,6 @@ export const sortItems = (itemList, sortField, isDescending) => {
         return 0;
     });
 };
+
+export const findNearest = (numList, target) =>
+    numList.reduce((prev, curr) => Math.abs(curr - target) < Math.abs(prev - target) ? curr : prev);
