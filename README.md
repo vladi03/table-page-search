@@ -65,6 +65,9 @@ const users = [
 |"onRowClick"|(Optional) called when user clicks on a row of the table|
 |"tableStyleName"|(Optional) string name for the class of the table object|
 |"useMaterialUiPaging"|(Optional) bool use the standard material ui table paging|
+|"filterText"|(Optional) table only shows values that match substring of value each field concatenated |
+
+
 
 ```javascript
   <TablePaging  loading={loading}
@@ -76,12 +79,12 @@ const users = [
 ```
 ## Server Side Paging
 
-When server side paging is needed the following options can be used.  For server side paging, the "dataList" should
+The following options can be used for server side paging.  For server side paging, the "dataList" should
 have the same number of records or less than the "itemsPerPage" of the "headerConfig" object.
 
 ---
 
-**"totalRecordsFromServer"** = since the dataList only has one page of data, the total number of records is needed
+**"totalRecordsFromServer"** = since the dataList only has one page of data, the total number of records is required
 to render the page buttons and display total record count to the user.
 
 **"onServerSidePaging"** = This is call any time a sort or page change happens.  The fields that are provider are :

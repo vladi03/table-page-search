@@ -1,7 +1,7 @@
 {
   "name": "table-page-search",
   "_": "[bump]",
-  "version": "0.12.4",
+  "version": "0.12.5",
   "description": "material-ui table with opinionated styling",
   "main": "./lib/index.js",
   "files": [
@@ -35,9 +35,9 @@
   "bugs": {
     "url": "https://github.com/vladi03/table-page-search/issues"
   },
-  "homepage": "http://vladi03.github.io/table-page-search/",
+  "homepage": "https://vladi03.github.io/table-page-search/",
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
+    "@babel/cli": "^7.14.5",
     "@babel/core": "^7.6.3",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.6.3",
@@ -49,7 +49,7 @@
     "cross-env": "^6.0.3",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.0",
-    "gh-pages": "^2.1.1",
+    "gh-pages": "^3.2.1",
     "jsdom": "14.0.0",
     "jsdom-global": "3.0.2",
     "mocha": "^7.1.2",
